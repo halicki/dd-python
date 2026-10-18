@@ -13,7 +13,7 @@ Repo do nauki, nie produkt. Kod to port Javy 1:1 (nazwy klas zgodne z materiała
 
 ## Model pracy
 
-- `main` = czyste lustro upstreamu (remote `upstream` = DomainDrivers/dd-python) + commity infrastrukturalne (uv, docs). Fork Arka: remote `origin` (halicki/dd-python), `main` go śledzi.
+- Historia = upstream (remote `upstream` = DomainDrivers/dd-python) **przepisana** tak, że każdy z 62 commitów niesie pliki uv (`pyproject.toml`, `uv.lock`, `.python-version`, `Makefile`, `.gitignore`), bez `poetry.lock`. Hashe różnią się od upstreamu, tagi wskazują na przepisane commity (ADR-004). Fork Arka: remote `origin` (halicki/dd-python), `main` go śledzi.
 - Ćwiczenie: `make ex name=<temat>` tworzy gałąź `ex/<temat>` z tagu `<temat>-task`. Testy czerwone, Arek implementuje, testy zielone, `make compare name=<temat>` pokazuje diff do `<temat>-done`.
 - Pułapka: na tagu `-task` testy ćwiczenia mają `@pytest.mark.xfail(strict=True)`. Implementując, trzeba zdjąć marker, inaczej zielone testy zgłoszą XPASS jako błąd. Tag `-done` czasem dodaje też nowe pliki testowe (np. availability), dlatego `compare` porównuje całe drzewo, nie tylko `smartschedule/`.
 - Kroki bez zadania (tagi bez pary task/done): sesja czytania `git diff <poprzedni-tag> <tag>`, Claude tłumaczy co i dlaczego.
@@ -22,7 +22,6 @@ Repo do nauki, nie produkt. Kod to port Javy 1:1 (nazwy klas zgodne z materiała
 
 ## Stack i komendy
 
-- Python 3.12 (uv, `.python-version`). Jeden `.venv` zbudowany z `main`, nadzbiór zależności wszystkich tagów.
-- Na gałęziach ćwiczeń `pyproject.toml` i `Makefile` są stare (poetry). **Nie robić `uv sync` tam.** Testy: `.venv/bin/pytest tests/` albo `uv run --no-sync pytest tests/`.
+- Python 3.12 (uv, `.python-version`). Jeden `.venv`; `pyproject.toml` i `uv.lock` są identyczne na każdym tagu (nadzbiór zależności), więc `make test` i `make qa` działają wszędzie, także na gałęziach ćwiczeń.
 - Testy integracyjne wymagają działającego Dockera (testcontainers: postgres:15, redis:6).
 - `make qa` = ruff + mypy --strict + pytest + tach check.

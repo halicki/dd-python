@@ -9,3 +9,4 @@
 - 2026-10-18: `main` z przepisaną historią, tagi poza historią. Rozwiązanie: ADR-001.
 - 2026-10-18: brak Pythona 3.12 i środowiska. Rozwiązanie: uv + `.python-version` (ADR-002).
 - 2026-10-18: mylące nazwy remote'ów i brak tracking brancha. Rozwiązanie: `origin` = fork (halicki), `upstream` = DomainDrivers, `main` śledzi `origin/main`.
+- 2026-10-18: `Makefile` i pliki uv znikały po `git switch` na tag `-task`. Rozwiązanie: historia przepisana, narzędzia w każdym commicie (ADR-004).

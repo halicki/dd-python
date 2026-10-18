@@ -19,6 +19,9 @@ make test        # pytest only
 
 ```bash
 make ex name=risk            # branch ex/risk from tag risk-task
-.venv/bin/pytest tests/      # the venv built from main works on every tag
+make test                    # tooling files are identical on every tag
 make compare name=risk       # diff against the reference solution
 ```
+
+History note: this fork's commits are rewritten so that every commit (and every course tag)
+carries the uv setup. Hashes differ from upstream; see `docs/decisions.md` (ADR-004).
