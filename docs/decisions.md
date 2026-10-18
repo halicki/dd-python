@@ -37,4 +37,4 @@
 
 **Konsekwencje.** ADR-001 nieaktualny. `make qa` i `make test` działają na każdym tagu. Jeden `uv.lock` dla całej historii jest nadzbiorem: na wczesnych tagach instaluje się więcej, niż kod potrzebuje. Diff między tagami nie zawiera już zmian w `pyproject.toml`, bo plik jest wszędzie identyczny.
 
-**Celowo nie ujednolicone:** `tach.yml`. Zmienia się 16 razy w historii, bo lista modułów rośnie z lekcjami; to część materiału kursu, nie konfiguracja narzędzia. Z tego samego powodu nie przenosimy go do `pyproject.toml`. Katalog `.tach/` nie wymaga wpisu w `.gitignore`: tach sam tworzy w nim `.gitignore` z regułą `*`.
+**Celowo nie ujednolicone:** `tach.yml`. Zmienia się 16 razy w historii, bo lista modułów rośnie z lekcjami; to część materiału kursu, nie konfiguracja narzędzia. Z tego samego powodu nie przenosimy go do `pyproject.toml`. Katalog `.tach/` jest w `.gitignore` mimo że tach sam tworzy w nim `.gitignore` z regułą `*`: dla gita to wystarcza, ale VS Code pyta `check-ignore` o sam katalog i bez wpisu pokazuje go na biało.
