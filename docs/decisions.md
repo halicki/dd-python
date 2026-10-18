@@ -36,3 +36,5 @@
 **Dlaczego to bezpieczne.** Upstream to zamrożone repo kursowe (ostatni commit wrzesień 2024), więc utrata fast-forwardu nic nie kosztuje. Remote `upstream` zostaje jako punkt odniesienia do `git diff`. Pełna kopia sprzed przepisania: `../dd-python-backup` (do skasowania, gdy przestanie być potrzebna).
 
 **Konsekwencje.** ADR-001 nieaktualny. `make qa` i `make test` działają na każdym tagu. Jeden `uv.lock` dla całej historii jest nadzbiorem: na wczesnych tagach instaluje się więcej, niż kod potrzebuje. Diff między tagami nie zawiera już zmian w `pyproject.toml`, bo plik jest wszędzie identyczny.
+
+**Celowo nie ujednolicone:** `tach.yml`. Zmienia się 16 razy w historii, bo lista modułów rośnie z lekcjami; to część materiału kursu, nie konfiguracja narzędzia. Z tego samego powodu nie przenosimy go do `pyproject.toml`. Katalog `.tach/` nie wymaga wpisu w `.gitignore`: tach sam tworzy w nim `.gitignore` z regułą `*`.
