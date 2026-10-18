@@ -15,6 +15,7 @@ Repo do nauki, nie produkt. Kod to port Javy 1:1 (nazwy klas zgodne z materiała
 
 - `main` = czyste lustro upstreamu (remote `upstream` = DomainDrivers/dd-python) + commity infrastrukturalne (uv, docs). Fork Arka: remote `origin` (halicki/dd-python), `main` go śledzi.
 - Ćwiczenie: `make ex name=<temat>` tworzy gałąź `ex/<temat>` z tagu `<temat>-task`. Testy czerwone, Arek implementuje, testy zielone, `make compare name=<temat>` pokazuje diff do `<temat>-done`.
+- Pułapka: na tagu `-task` testy ćwiczenia mają `@pytest.mark.xfail(strict=True)`. Implementując, trzeba zdjąć marker, inaczej zielone testy zgłoszą XPASS jako błąd. Tag `-done` czasem dodaje też nowe pliki testowe (np. availability), dlatego `compare` porównuje całe drzewo, nie tylko `smartschedule/`.
 - Kroki bez zadania (tagi bez pary task/done): sesja czytania `git diff <poprzedni-tag> <tag>`, Claude tłumaczy co i dlaczego.
 - Wnioski po ćwiczeniu trafiają do `docs/learning-log.md` na `main`.
 - Kolejność tagów i mapa modułów: `docs/context.md`. Decyzje: `docs/decisions.md`.
