@@ -1,25 +1,24 @@
-# Running tests
+# dd-python
 
-## Prerequisites
+Python port of the [Domain Drivers](https://edu.devstyle.pl/products/domain-drivers) course code.
+This fork is used for working through the course. See `CLAUDE.md` and `docs/` for the workflow.
 
-- Install [Python3.12](https://www.python.org/downloads/)
-- Install [poetry](https://python-poetry.org/)
-- Install project dependencies in a poetry's managed virtualenv `poetry install --with=dev`
-- Have docker up and running (tests use [TestContainers](https://testcontainers.com/))
+## Setup
+
+- Install [uv](https://docs.astral.sh/uv/) and have Docker running (tests use [TestContainers](https://testcontainers.com/))
+- `uv sync` installs Python 3.12 and all dependencies into `.venv`
 
 ## Running linters and tests
 
-### If you have make
 ```bash
-make qa
+make qa          # ruff + mypy --strict + pytest + tach
+make test        # pytest only
 ```
 
-### If you don't have make
-```bash
-ruff check . --extend-select I --fix
-ruff format .
-mypy --strict --enable-incomplete-feature=NewGenericSyntax .
-pytest tests/
-tach check
-```
+## Working on a course exercise
 
+```bash
+make ex name=risk            # branch ex/risk from tag risk-task
+.venv/bin/pytest tests/      # the venv built from main works on every tag
+make compare name=risk       # diff against the reference solution
+```
