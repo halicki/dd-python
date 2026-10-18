@@ -13,7 +13,7 @@ Repo do nauki, nie produkt. Kod to port Javy 1:1 (nazwy klas zgodne z materiała
 
 ## Model pracy
 
-- `main` = czyste lustro upstreamu (remote `origin` = DomainDrivers/dd-python) + commity infrastrukturalne (uv, docs). Fork Arka: remote `halicki`.
+- `main` = czyste lustro upstreamu (remote `upstream` = DomainDrivers/dd-python) + commity infrastrukturalne (uv, docs). Fork Arka: remote `origin` (halicki/dd-python), `main` go śledzi.
 - Ćwiczenie: `make ex name=<temat>` tworzy gałąź `ex/<temat>` z tagu `<temat>-task`. Testy czerwone, Arek implementuje, testy zielone, `make compare name=<temat>` pokazuje diff do `<temat>-done`.
 - Kroki bez zadania (tagi bez pary task/done): sesja czytania `git diff <poprzedni-tag> <tag>`, Claude tłumaczy co i dlaczego.
 - Wnioski po ćwiczeniu trafiają do `docs/learning-log.md` na `main`.

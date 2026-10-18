@@ -4,9 +4,9 @@
 
 **Kontekst.** Lokalny `main` był zrebase'owany na zmodyfikowany pierwszy commit. Wszystkie hashe różniły się od upstreamu, a tagi kursu wskazywały na starą historię, więc `git diff <tag> main` pokazywał śmieci.
 
-**Decyzja.** `main` = `origin/main` (DomainDrivers) + commity infrastrukturalne na wierzchu. Stara historia zachowana jako gałąź `backup/rebased-main` (do skasowania, gdy przestanie być potrzebna).
+**Decyzja.** `main` = `upstream/main` (DomainDrivers) + commity infrastrukturalne na wierzchu; pushowany do forka (`origin`). Stara historia zachowana jako gałąź `backup/rebased-main` (do skasowania, gdy przestanie być potrzebna).
 
-**Konsekwencje.** Tagi są przodkami `main`. Gałęzie ćwiczeń startują z tagów. Aktualizacja z upstreamu = `git rebase origin/main` naszych kilku commitów.
+**Konsekwencje.** Tagi są przodkami `main`. Gałęzie ćwiczeń startują z tagów. Aktualizacja z upstreamu = `git fetch upstream && git rebase upstream/main` naszych kilku commitów.
 
 ## ADR-002: uv zamiast poetry, jeden venv dla wszystkich tagów (2026-10-18)
 
@@ -15,6 +15,7 @@
 **Decyzja.** `pyproject.toml` w formacie PEP 621 + `uv.lock` na `main`. Wersje zależności takie jak w dawnym `poetry.lock` (uv zaimportował je przy pierwszym `uv sync`). `.venv` buduje się z `main` i jest nadzbiorem; na gałęziach z tagów używamy go bez sync (`uv run --no-sync` albo `.venv/bin/pytest`).
 
 **Alternatywy odrzucone.**
+
 - Cherry-pick commita uv na każdą gałąź ćwiczenia: konflikty w `pyproject.toml` na każdym tagu.
 - Worktree per ćwiczenie: do rozważenia później, jeśli przełączanie gałęzi zacznie przeszkadzać.
 
