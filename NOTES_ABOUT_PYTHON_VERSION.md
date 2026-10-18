@@ -72,7 +72,6 @@ The original Java version uses [@Transactional](https://docs.spring.io/spring-fr
 
 This aspect was omitted in Python version. Usually, transaction is handled manually on a higher level than application service (e.g. in view or middleware), so it wasn't included.
 
-
 One can quite easily imagine though how would that work - either manually using sqlalchemy's Session with context manager & commit in transactional method OR write a custom decorator that would be doing the same.
 
 ```python
@@ -80,4 +79,3 @@ with session.begin():
     # execute logic, do some DB operations
     # commits transaction at the end, or rolls back if there was an exception raised
 ```
-
